@@ -5,6 +5,9 @@ const imageSelect = document.getElementById('imageSelect');
 const images = document.getElementById('images');
 const studentId = "200535886";
 
+// Declare the imageNames array at a higher scope
+const imageNames = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg"];
+
 // Function to change background color based on user input
 function changeCustomColor() {
     const userInput = Number(customNumberInput.value);
@@ -48,18 +51,16 @@ function changeBackgroundColor(value) {
 
 // Function to generate options for select list
 function addList() {
-    
     for (let i = 0; i < imageNames.length; i++) {
         const option = document.createElement('option');
         option.value = i;
-        option.textContent = `img ${i + 1}`;
+        option.textContent = `images ${i + 1}`;
         imageSelect.appendChild(option);
     }
 }
 
 // Function to change image
 function changeImage() {
-    const imageNames = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg"];
     const selectedIndex = imageSelect.value;
     if (selectedIndex >= 0 && selectedIndex < imageNames.length) {
         const selectedImageSrc = imageNames[selectedIndex];
@@ -73,3 +74,6 @@ document.querySelector('.randColor').addEventListener('click', changeRandomColor
 
 // Event listeners for on change event of select
 imageSelect.addEventListener('change', changeImage);
+
+// Call addList to generate select options
+addList();
